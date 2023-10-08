@@ -1,0 +1,24 @@
+{
+  "acme_path": "/root/.acme.sh",
+  "reload_command": "nginx -s reload",
+  "sites": [
+    {
+      "name": "mix",
+      "path": "/www/wwwroot/dev/public",
+      "domains": ["www.example.com","test.example.com"],
+      "cert_file": "/www/server/panel/vhost/cert/dev/fullchain.pem",
+      "key_file": "/www/server/panel/vhost/cert/dev/privkey.pem",
+      "ca_file": "/dev/null",
+      "fullchain_file": "/dev/null"
+    },
+    {
+      "name": "mix",
+      "path": "/www/wwwroot/dev/public",
+      "domains": ["www.example.com","test.example.com"],
+      "cert_file": "/www/server/panel/vhost/cert/dev/fullchain.pem",
+      "key_file": "/www/server/panel/vhost/cert/dev/privkey.pem",
+      "ca_file": "/dev/null",
+      "fullchain_file": "/dev/null"
+    }
+  ]
+}
