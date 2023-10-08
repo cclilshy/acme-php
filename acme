@@ -10,12 +10,25 @@ foreach ($config['sites'] as $site) {
     $firstDomain = array_shift($site['domains']);
     $domainSSLPath = ACME_PATH . "/{$firstDomain}_ecc/";
     if (is_dir($domainSSLPath)) {
-        echo "\033[32mWebsite '{$site['name']}' SSL has been installed to the specified directory \033[0m\n";
         //TODO: copy ssl to site path
+        if (!file_exists("{$domainSSLPath}/{$firstDomain}.cer")) {
+            echo "\033[31mSSL build failed\033[0m\n";
+            continue;
+        } elseif (!file_exists("{$domainSSLPath}/{$firstDomain}.key")) {
+            echo "\033[31mSSL build failed\033[0m\n";
+            continue;
+        } elseif (!file_exists("{$domainSSLPath}/ca.cer")) {
+            echo "\033[31mSSL build failed\033[0m\n";
+            continue;
+        } elseif (!file_exists("{$domainSSLPath}/fullchain.cer")) {
+            echo "\033[31mSSL build failed\033[0m\n";
+            continue;
+        }
         copy("{$domainSSLPath}/{$firstDomain}.cer", $site['cert_file']);
         copy("{$domainSSLPath}/{$firstDomain}.key", $site['key_file']);
         copy("{$domainSSLPath}/ca.cer", $site['ca_file']);
         copy("{$domainSSLPath}/fullchain.cer", $site['fullchain_file']);
+        echo "\033[32mWebsite '{$site['name']}' SSL has been installed to the specified directory \033[0m\n";
     } else {
         echo "\033[31mSSL build failed\033[0m\n";
     }
