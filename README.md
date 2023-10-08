@@ -3,7 +3,12 @@
 #### 安装
 
 ```bash
+# 官方安装
 wget -O - https://get.acme.sh | sh -s email=[邮箱地址]
+# 国内镜像
+curl https://gitcode.net/cert/cn-acme.sh/-/raw/master/install.sh?inline=false | sh -s email=my@example.com
+
+# 安装acme-php
 git clone https://github.com/cclilshy/acme-php
 ```
 
